@@ -1,5 +1,3 @@
 # Invasive Images Twitter Bot
 
-## Project description
-
-Twitter bot to send out images of invasive and exotic species during invasives week.
+The scripts here run a Twitter bot (https://twitter.com/GetINNSvolved) to send out images of invasive and exotic species during UK invasives week.

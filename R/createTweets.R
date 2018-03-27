@@ -4,7 +4,7 @@
 ## Author: Steve Lane
 ## Date: Tuesday, 27 March 2018
 ## Synopsis: Creates tweets for twitterbot
-## Time-stamp: <2018-03-27 14:37:07 (slane)>
+## Time-stamp: <2018-03-27 14:40:03 (slane)>
 ################################################################################
 ################################################################################
 library(dplyr)
@@ -32,9 +32,3 @@ while (duration < (84 * 60)) {
     intermediate <- Sys.time()
     duration <- as.numeric(intermediate - start) / 60
 }
-
-## Thanks for listening in
-rtweet::post_tweet(
-            status =
-                "Thanks to https://www.invasive.org/ for the incredible resource, all pics attributable the authors listed in individual tweets. Built by @stephenelane, visit https://twitter.com/cebra_uom and https://cebra.unimelb.edu.au/ for more biosecurity research."
-        )

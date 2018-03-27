@@ -4,7 +4,7 @@
 ## Author: Steve Lane
 ## Date: Tuesday, 27 March 2018
 ## Synopsis: Creates tweets for twitterbot
-## Time-stamp: <2018-03-27 14:15:57 (slane)>
+## Time-stamp: <2018-03-27 14:37:07 (slane)>
 ################################################################################
 ################################################################################
 library(dplyr)
@@ -17,12 +17,24 @@ source("tweetImage.R")
 ## Grab all pests
 all_pests <- getLists()
 
-## Send a tweet every hour with a randomly selected pest (may get repeats!)
-repeat({
+## Send a tweet every 15 minutes with a randomly selected pest (may get
+## repeats!) until the end of invasives week.
+start <- Sys.time()
+intermediate <- Sys.time()
+duration <- as.numeric(intermediate - start) / 60
+while (duration < (84 * 60)) {
     ## Sample a pest
     one_pest <- getImage(all_pests)
     ## Tweet
     tweetImage(one_pest)
     ## Go to sleep for 15 minutes
     Sys.sleep(60 * 15)
-})
+    intermediate <- Sys.time()
+    duration <- as.numeric(intermediate - start) / 60
+}
+
+## Thanks for listening in
+rtweet::post_tweet(
+            status =
+                "Thanks to https://www.invasive.org/ for the incredible resource, all pics attributable the authors listed in individual tweets. Built by @stephenelane, visit https://twitter.com/cebra_uom and https://cebra.unimelb.edu.au/ for more biosecurity research."
+        )
